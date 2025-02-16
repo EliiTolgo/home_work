@@ -2,6 +2,7 @@
 //displaying items. Use functions with return types and optional/named parameters. Make sure to
 //handle possible null values.
 import 'dart:io';
+import 'dart:math';
 
 void main() {
   List<String> grocery = ['apple', 'milk', 'bread'];
@@ -30,6 +31,9 @@ List<String> addGrocery(
 
 List<String> removeGrocery(
     {required List<String> grocery, required String removeItems}) {
-  grocery.remove(removeItems);
-  return grocery;
+  if (grocery != null) {
+    grocery.remove(removeItems);
+    return grocery;
+  } else
+    return grocery;
 }
