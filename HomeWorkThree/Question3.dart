@@ -28,10 +28,12 @@ void main() {
     case 'update':
       tasks.isCompleted = true;
   }
+
 }
 
 class Task {
   String? description;
   String? dueDate;
   bool? isCompleted = false;
+  
 }
