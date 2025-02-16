@@ -2,6 +2,6 @@
 void main() {
   int numberOne = 10;
   int numberTow = 3;
-  double result = numberOne / numberTow;
+  int result = numberOne % numberTow;
   print(result);
 }
