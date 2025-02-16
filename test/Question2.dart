@@ -5,7 +5,7 @@
 //- Add 'yellow' to the list and print the updated list.
 //- Remove 'green' from the list and print the updated list.
 void main() {
-  List<String> colors = ['red', 'green', 'blue'];
+  List<String> colors = ['fff', 'ff', 'blue'];
   colors.add('yellow');
   print(colors);
   colors.remove('green');
