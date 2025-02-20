@@ -31,7 +31,7 @@ double addition(double num1, double num2, [double? num3 = 0]) {
   return result;
 }
 
-double multiple(double num1, double num2, [double? num3 = 0]) {
+double multiple(double num1, double num2, [double? num3 = 1]) {
   double result = num1 * num2 * num3!;
   return result;
 }

@@ -4,6 +4,7 @@
 import 'dart:io';
 import 'dart:math';
 
+// كل دا يفضل يتعمل في class
 void main() {
   List<String> grocery = ['apple', 'milk', 'bread'];
   print(
@@ -25,12 +26,16 @@ void main() {
 
 List<String> addGrocery(
     {required List<String> grocery, required String newItems}) {
+      // الصح هنا اني اعمل اتشيك اذا القيمة نل او لا علشان مينفعش اضيف قيمة نل في الليست 
   grocery.add(newItems);
+  /// مش محتاجه اعمل ريترن لأن لما اباصي ليست فأنا بعمل اثنين اسم كلهم بيشاوروا على نفس الليست فلو عدلت هتمسع علطول بدون ريتين 
   return grocery;
 }
 
 List<String> removeGrocery(
     {required List<String> grocery, required String removeItems}) {
+      // التشيك هلهاش لازمه لانه لو هيمسح حاجه من ليست فاضية مش هعمل حاجه لانه الريموف بتشتغل انه يلف على الليست 
+      //هل اللي عايزه امسحهه في الليست و لالا لو موجود هيمسحه مش موجود مش هيعمل حاتجه 
   if (grocery != null) {
     grocery.remove(removeItems);
     return grocery;
