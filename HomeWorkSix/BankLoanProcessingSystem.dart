@@ -31,7 +31,7 @@ abstract class Loan {
   double interestRate = 0;
   double calculateMonthlyInstallment(int months) {
     double interest = loanAmount * (interestRate / 100);
-    double installment = interest / months;
+    double installment = (interest + loanAmount) / months;
     return installment;
   }
 }
@@ -47,7 +47,7 @@ class PersonalLoan extends Loan {
   @override
   double calculateMonthlyInstallment(int months) {
     double interest = loanAmount * (interestRate / 100);
-    double installment = interest / months;
+    double installment = (interest + loanAmount) / months;
     return installment;
   }
 }
@@ -68,7 +68,7 @@ class HomeLoan extends Loan {
       interestRate = 9.5;
     }
     double interest = loanAmount * (interestRate / 100);
-    double installment = interest / months;
+    double installment = (interest + loanAmount) / months;
     return installment;
   }
 }
@@ -92,7 +92,7 @@ class CarLoan extends Loan {
     }
     double interest =
         loanAmount * (interestRate / 100) * (dditionalProcessing / 100);
-    double installment = interest / months;
+    double installment = (interest + loanAmount) / months;
     return installment;
   }
 }
