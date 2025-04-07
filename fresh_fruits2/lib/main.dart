@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fresh_fruits2/Styles/app_text_styles.dart';
-import 'screens/onboarding_viwe.dart';
 import 'screens/splash_viwe.dart';
 
 void main() {
@@ -20,7 +19,7 @@ class _FreshFruitsState extends State<FreshFruits> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: AppTextStyles.poppinsFamily),
-      home: OnboardingViwe(),
+      home: SplashViwe(),
     );
   }
 }

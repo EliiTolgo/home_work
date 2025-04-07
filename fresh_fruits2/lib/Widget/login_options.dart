@@ -14,6 +14,7 @@ class LoginOptions extends StatelessWidget {
           text: 'Create an account',
           onPressed: () {},
           textcolor: Colors.white,
+          isborder: false,
         ),
         SizedBox(height: 10),
         AppButton(
@@ -21,6 +22,7 @@ class LoginOptions extends StatelessWidget {
           text: 'Login',
           onPressed: () {},
           textcolor: Colors.black,
+          isborder: true,
         ),
       ],
     );

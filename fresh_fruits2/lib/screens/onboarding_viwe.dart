@@ -37,18 +37,24 @@ class _OnboardingViweState extends State<OnboardingViwe> {
     OnboardingItemModel(
       title: "We provide best quality Fruits to your family",
       subtitle:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed  ",
-      image: Assets.imagesOnboarding1,
+          "Lorem ipsum dolor sit amet, consectetur adipiscing  elit, sed do eiusmod tempor   ",
+      image: Assets.imagesOnboarding2,
     ),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: Icon(Icons.arrow_back, color: AppColors.secondary),
+      ),
       body: Column(
         children: [
+          Spacer(flex: 1),
           Expanded(
+            flex: 8,
             child: Padding(
               padding: const EdgeInsets.only(top: 30),
               child: PageView.builder(
@@ -69,17 +75,18 @@ class _OnboardingViweState extends State<OnboardingViwe> {
               count: 3,
               effect: WormEffect(
                 spacing: 16,
-                dotColor: Colors.grey,
+                dotColor: AppColors.lightgrey,
                 activeDotColor: AppColors.green,
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 40),
+            padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 30),
             child:
                 isLastPage
                     ? LoginOptions()
                     : AppButton(
+                      isborder: false,
                       textcolor: Colors.black,
                       onPressed:
                           () => _controller.nextPage(

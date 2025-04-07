@@ -9,6 +9,7 @@ class OnboardingItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(
         children: [
           SvgPicture.asset(item.image),
