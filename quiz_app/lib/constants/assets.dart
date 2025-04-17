@@ -21,4 +21,5 @@ class Assets {
   /// Assets for imageQ4Index
   /// assets/image/q4Index.svg
   static const String imageQ4Index = "assets/image/q4Index.svg";
+  static const String check_icon = "assets/image/check_icon.svg";
 }

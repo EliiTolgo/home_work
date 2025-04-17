@@ -13,12 +13,15 @@ class QuestionItem extends StatefulWidget {
 
   final List<Question> question;
   final int questionIndex;
-
   @override
   State<QuestionItem> createState() => _QuestionItemState();
 }
 
-class _QuestionItemState extends State<QuestionItem> {
+class _QuestionItemState extends State<QuestionItem>
+    with AutomaticKeepAliveClientMixin {
+  int selectedIndex = -1;
+  @override
+  bool get wantKeepAlive => true;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -41,12 +44,14 @@ class _QuestionItemState extends State<QuestionItem> {
               itemBuilder: (context, index) {
                 return ChoiceItem(
                   onTap: () {
-                    setState(() {});
+                    setState(() {
+                      widget.question[widget.questionIndex].answer =
+                          widget.question[widget.questionIndex].options[index];
+                      selectedIndex = index;
+                    });
                   },
                   choice: widget.question[widget.questionIndex].options[index],
-                  isSelected:
-                      widget.question[widget.questionIndex].answer ==
-                      widget.question[widget.questionIndex].correctAnswer,
+                  isSelected: selectedIndex == index,
                 );
               },
             ),

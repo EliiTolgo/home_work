@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:quiz_app/constants/assets.dart';
 
 import '../Styles/app_colors.dart';
 import '../Styles/app_text_styles.dart' show AppTextStyles;
@@ -25,19 +27,37 @@ class ChoiceItem extends StatelessWidget {
           width: double.infinity,
           height: 49,
           decoration: BoxDecoration(
-            color: Colors.white,
+            gradient:
+                isSelected
+                    ? LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: AppColors.seconsarygaad,
+                    )
+                    : LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [Colors.white, Colors.white],
+                    ),
             borderRadius: BorderRadius.circular(12),
           ),
           child: Padding(
             padding: const EdgeInsets.only(left: 15),
             child: Row(
               children: [
-                Icon(
-                  isSelected
-                      ? Icons.radio_button_checked
-                      : Icons.radio_button_off,
-                  color: AppColors.maineViolet,
-                ),
+                isSelected
+                    ? SizedBox(
+                      width: 19,
+                      height: 19,
+                      child: CircleAvatar(
+                        backgroundColor: AppColors.maineViolet,
+                        child: SvgPicture.asset(Assets.check_icon),
+                      ),
+                    )
+                    : Icon(
+                      Icons.radio_button_off,
+                      color: AppColors.maineViolet,
+                    ),
                 SizedBox(width: 16),
                 Padding(
                   padding: const EdgeInsets.only(top: 2),

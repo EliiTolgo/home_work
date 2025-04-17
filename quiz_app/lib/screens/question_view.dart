@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/constants/assets.dart';
 import '../models/question.dart';
 import '../widgets/question_control.dart';
 import '../widgets/question_item.dart';
@@ -11,24 +10,9 @@ class QuestionView extends StatefulWidget {
   State<QuestionView> createState() => _QuestionViewState();
 }
 
-List<Question> question = [
-  Question(
-    image: Assets.imageQindex,
-    question:
-        'How would you describe your level of satisfaction with the healthcare system?',
-    options: ['Strongly satisfied', 'Satisfied', 'Neutral', 'Not satisfied'],
-    correctAnswer: 'Strongly satisfied',
-  ),
-  Question(
-    image: Assets.imageQ2Index,
-    question: 'What vitamins do you take?',
-    options: ['Vitamin D3', 'Vitamin B', 'Zinc', 'Magnesium'],
-    correctAnswer: 'Vitamin D3',
-  ),
-];
-
 class _QuestionViewState extends State<QuestionView> {
   final _controller = PageController();
+  late QuestionsManger questionsManger = QuestionsManger();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,23 +32,40 @@ class _QuestionViewState extends State<QuestionView> {
             Expanded(
               child: PageView.builder(
                 controller: _controller,
-                itemCount: question.length,
+                itemCount: questionsManger.questions.length,
                 itemBuilder:
-                    (context, index) =>
-                        QuestionItem(question: question, questionIndex: index),
+                    (context, index) => QuestionItem(
+                      question: questionsManger.questions,
+                      questionIndex: index,
+                    ),
               ),
             ),
 
             QuestionControl(
-              next:
-                  () => _controller.nextPage(
+              next: () {
+                if (_controller.page!.toInt() <
+                    questionsManger.questions.length - 1) {
+                  _controller.nextPage(
                     duration: Duration(milliseconds: 300),
                     curve: Curves.easeIn,
-                  ),
+                  );
+                } else {
+                  showDialog(
+                    context: context,
+                    builder:
+                        (context) => AlertDialog(
+                          title: Text('Quiz Completed'),
+                          content: Text(
+                            'Your score is ${questionsManger.calculateTotalScore()}',
+                          ),
+                        ),
+                  );
+                }
+              },
               back:
                   () => _controller.previousPage(
                     duration: Duration(milliseconds: 300),
-                    curve: Curves.easeIn,
+                    curve: Curves.easeInOut,
                   ),
             ),
           ],
