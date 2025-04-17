@@ -9,10 +9,12 @@ class QuestionItem extends StatefulWidget {
     super.key,
     required this.questionIndex,
     required this.question,
+    required this.questionsManger,
   });
 
   final List<Question> question;
   final int questionIndex;
+  final QuestionsManger questionsManger;
   @override
   State<QuestionItem> createState() => _QuestionItemState();
 }
@@ -45,13 +47,19 @@ class _QuestionItemState extends State<QuestionItem>
                 return ChoiceItem(
                   onTap: () {
                     setState(() {
-                      widget.question[widget.questionIndex].answer =
-                          widget.question[widget.questionIndex].options[index];
-                      selectedIndex = index;
+                      widget.questionsManger.updateQuestionAnswer(
+                        widget.questionIndex,
+                        widget.question[widget.questionIndex].options[index],
+                      );
                     });
                   },
                   choice: widget.question[widget.questionIndex].options[index],
-                  isSelected: selectedIndex == index,
+                  isSelected: widget
+                      .question[widget.questionIndex]
+                      .selectedAnswers
+                      .contains(
+                        widget.question[widget.questionIndex].options[index],
+                      ),
                 );
               },
             ),

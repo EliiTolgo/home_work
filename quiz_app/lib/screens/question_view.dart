@@ -37,6 +37,7 @@ class _QuestionViewState extends State<QuestionView> {
                     (context, index) => QuestionItem(
                       question: questionsManger.questions,
                       questionIndex: index,
+                      questionsManger: questionsManger,
                     ),
               ),
             ),
