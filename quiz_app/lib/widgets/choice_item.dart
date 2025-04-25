@@ -23,7 +23,7 @@ class ChoiceItem extends StatelessWidget {
       onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Container(
+        child: AnimatedContainer(
           width: double.infinity,
           height: 49,
           decoration: BoxDecoration(
@@ -41,6 +41,8 @@ class ChoiceItem extends StatelessWidget {
                     ),
             borderRadius: BorderRadius.circular(12),
           ),
+          duration: Duration(milliseconds: 300),
+
           child: Padding(
             padding: const EdgeInsets.only(left: 15),
             child: Row(
