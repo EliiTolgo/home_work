@@ -1,6 +1,6 @@
 class WeatherModel {
   final String cityName;
-  final String date;
+  final DateTime date;
   final String? image;
   final double temp;
   final double maxTemp;
@@ -17,15 +17,16 @@ class WeatherModel {
     required this.weatherConditions,
   });
 
-  factory WeatherModel.fromJsom(josn) {
+  factory WeatherModel.fromJson(josn) {
     return WeatherModel(
-      image: josn['forecast']['forecastday']['0']['day']['condition']['icon'],
+      image: josn['forecast']['forecastday'][0]['day']['condition']['icon'],
       cityName: josn['location']['name'],
-      date: josn['current']['last_updated'],
-      temp: josn['forecast']['forecastday']['0']['day']['avgtemp_c'],
-      maxTemp: josn['forecast']['forecastday']['0']['day']['maxtemp_c'],
-      minTemp: josn['forecast']['forecastday']['0']['day']['mintemp_c'],
-      weatherConditions: josn['forecast']['forecastday']['0']['day']['condition']['text'],
+      date: DateTime.parse(josn['current']['last_updated']),
+      temp: josn['forecast']['forecastday'][0]['day']['avgtemp_c'],
+      maxTemp: josn['forecast']['forecastday'][0]['day']['maxtemp_c'],
+      minTemp: josn['forecast']['forecastday'][0]['day']['mintemp_c'],
+      weatherConditions:
+          josn['forecast']['forecastday'][0]['day']['condition']['text'],
     );
   }
 }

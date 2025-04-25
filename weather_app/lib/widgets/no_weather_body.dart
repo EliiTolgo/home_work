@@ -15,10 +15,10 @@ class NoWeatherBody extends StatelessWidget {
             Text(
               textAlign: TextAlign.center,
               'there is no weather 😔 start',
-              style: TextStyle(fontSize: 30),
+              style: TextStyle(fontSize: 28),
             ),
             SizedBox(height: 16),
-            Text('searching now 🔍', style: TextStyle(fontSize: 30)),
+            Text('searching now 🔍', style: TextStyle(fontSize: 28)),
           ],
         ),
       ),
