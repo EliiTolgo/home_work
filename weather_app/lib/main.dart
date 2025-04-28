@@ -18,3 +18,4 @@ class WeatherApp extends StatelessWidget {
     );
   }
 }
+//سناك بار لما يددخل حاجه غلط و تحليه يعمل تراي اجين 
