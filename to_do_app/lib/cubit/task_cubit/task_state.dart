@@ -1,13 +1,31 @@
+import 'package:equatable/equatable.dart' show Equatable;
 import 'package:to_do_app/model/task_model.dart';
 
-class TaskState {}
+sealed class TasksState extends Equatable {
+  const TasksState();
 
-class taskInitialState extends TaskState {}
-
-class taskUpdateState extends TaskState {
-  final TaskModel taskModel;
-
-  taskUpdateState({required this.taskModel});
+  @override
+  List<Object> get props => [];
 }
 
-class taskFiluerState extends TaskState {}
+final class TasksInitial extends TasksState {}
+
+final class TasksLoading extends TasksState {}
+
+final class TasksSuccess extends TasksState {
+  final List<TaskModel> tasks;
+
+  const TasksSuccess({required this.tasks});
+
+  @override
+  List<Object> get props => [tasks];
+}
+
+final class TasksFailure extends TasksState {
+  final String errMessage;
+
+  const TasksFailure({required this.errMessage});
+
+  @override
+  List<Object> get props => [errMessage];
+}

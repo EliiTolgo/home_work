@@ -13,24 +13,37 @@ class HomeView extends StatelessWidget {
   final TaskManger taskManger = TaskManger();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColor.backgroundColor,
-      appBar: AppBar(
-        backgroundColor: AppColor.primary,
-        title: Text('My Taske', style: TextStyle(fontWeight: FontWeight.bold)),
+    return BlocProvider(
+      create: (context) => TaskCubit(),
+      child: Scaffold(
+        backgroundColor: AppColor.backgroundColor,
+        appBar: AppBar(
+          backgroundColor: AppColor.primary,
+          title: Text(
+            'My Taske',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+        body: BlocBuilder<TaskCubit, TasksState>(
+          builder: (context, state) {
+            if (state is TasksFailure) {
+              return Text(state.errMessage);
+            }
+
+            if (state is TasksSuccess) {
+              if (state.tasks.isEmpty) {
+                return NoTaskBody();
+              }
+              return TaskListViwe(taskModel: state.tasks);
+            }
+            if (state is TasksInitial) {
+              return NoTaskBody();
+            }
+            return CircularProgressIndicator();
+          },
+        ),
+        bottomNavigationBar: TaskBottomNavigationBar(),
       ),
-      body: BlocBuilder<TaskCubit, TaskState>(
-        builder: (context, state) {
-          if (state is taskInitialState) {
-            return NoTaskBody();
-          } else if (state is taskUpdateState) {
-            return TaskListViwe();
-          } else {
-            return Text('opps there was an error , try leter');
-          }
-        },
-      ),
-      bottomNavigationBar: TaskBottomNavigationBar(),
     );
   }
 }

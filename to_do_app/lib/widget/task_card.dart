@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
+import 'package:to_do_app/cubit/task_cubit/task_cubit.dart';
+import 'package:to_do_app/model/task_model.dart';
 import 'package:to_do_app/style/app_color.dart';
+import 'package:intl/intl.dart';
 
 class TaskCard extends StatelessWidget {
-  const TaskCard({super.key});
+  const TaskCard({super.key, required this.taskModel});
+  final TaskModel taskModel;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,12 +27,30 @@ class TaskCard extends StatelessWidget {
           ],
         ),
         child: ListTile(
-          leading: Checkbox(value: false, onChanged: (newValue) {}),
-
-          title: Text('data'),
-          subtitle: Text('28 / 4 / 2025'),
+          leading: Checkbox(
+            value: taskModel.isDone,
+            onChanged: (newValue) {
+              if (newValue == true) {
+                BlocProvider.of<TaskCubit>(context).completTask(taskModel);
+              } else {
+                BlocProvider.of<TaskCubit>(context).unCompletTask(taskModel);
+              }
+            },
+          ),
+          title: Text(
+            taskModel.title,
+            style: TextStyle(
+              decoration:
+                  taskModel.isDone == true ? TextDecoration.lineThrough : null,
+            ),
+          ),
+          subtitle: Text(
+            'Craeted : ${DateFormat('dd/MM/yyyy').format(taskModel.taskDate)}',
+          ),
           trailing: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              BlocProvider.of<TaskCubit>(context).removeTaske(taskModel);
+            },
             icon: Padding(
               padding: const EdgeInsets.only(top: 10),
               child: Icon(Icons.delete_outlined, color: Colors.red, size: 20),

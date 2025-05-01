@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:to_do_app/cubit/task_cubit/task_cubit.dart';
 
 import '../style/app_color.dart';
 
-class TaskBottomNavigationBar extends StatelessWidget {
+class TaskBottomNavigationBar extends StatefulWidget {
   const TaskBottomNavigationBar({super.key});
 
+  @override
+  State<TaskBottomNavigationBar> createState() =>
+      _TaskBottomNavigationBarState();
+}
+
+class _TaskBottomNavigationBarState extends State<TaskBottomNavigationBar> {
+  String title = '';
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -31,6 +40,9 @@ class TaskBottomNavigationBar extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(right: 5),
                   child: TextField(
+                    onChanged: (title) {
+                      this.title = title;
+                    },
                     decoration: InputDecoration(
                       hintText: 'Add a new task...',
                       hintStyle: TextStyle(color: Colors.grey),
@@ -50,7 +62,9 @@ class TaskBottomNavigationBar extends StatelessWidget {
                   shape: BoxShape.circle,
                 ),
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    BlocProvider.of<TaskCubit>(context).addTask(title);
+                  },
                   icon: Icon(Icons.add, color: Colors.grey),
                 ),
               ),

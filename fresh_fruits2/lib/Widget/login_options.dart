@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../screens/create_an_account.dart';
 import 'app_button.dart';
 
 class LoginOptions extends StatelessWidget {
@@ -12,7 +13,12 @@ class LoginOptions extends StatelessWidget {
         AppButton(
           color: Colors.black,
           text: 'Create an account',
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CreateAnAccount()),
+            );
+          },
           textcolor: Colors.white,
           isborder: false,
         ),
