@@ -3,12 +3,19 @@ import 'package:flutter/material.dart';
 import '../Styles/app_colors.dart';
 
 class CustomTextField extends StatelessWidget {
-  CustomTextField({super.key, required this.hintText, this.ispass = false});
+  CustomTextField({
+    super.key,
+    required this.hintText,
+    this.ispass = false,
+    required this.onChanged,
+  });
   final String hintText;
   final bool ispass;
+  final ValueChanged<String> onChanged;
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      onChanged: onChanged,
       obscureText: ispass,
       decoration: InputDecoration(
         hintText: hintText,
