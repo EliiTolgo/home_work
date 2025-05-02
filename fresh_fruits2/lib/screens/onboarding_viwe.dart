@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fresh_fruits2/Model/onboarding_item_model.dart';
 import 'package:fresh_fruits2/Styles/app_colors.dart';
+import 'package:fresh_fruits2/Widget/dots_indicator.dart' show DotsIndicator;
 import 'package:fresh_fruits2/constants/assets.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -69,17 +70,7 @@ class _OnboardingViweState extends State<OnboardingViwe> {
               ),
             ),
           ),
-          Center(
-            child: SmoothPageIndicator(
-              controller: _controller,
-              count: 3,
-              effect: WormEffect(
-                spacing: 16,
-                dotColor: AppColors.lightgrey,
-                activeDotColor: AppColors.green,
-              ),
-            ),
-          ),
+          Center(child: DotsIndicator(currentIndex: currentIndex)),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 30),
             child:
@@ -88,11 +79,17 @@ class _OnboardingViweState extends State<OnboardingViwe> {
                     : AppButton(
                       isborder: false,
                       textcolor: Colors.black,
-                      onPressed:
-                          () => _controller.nextPage(
-                            duration: Duration(milliseconds: 300),
-                            curve: Curves.easeIn,
-                          ),
+                      onPressed: () {
+                        if (currentIndex < onboardingItem.length) {
+                          currentIndex++;
+                        } else if (currentIndex >= onboardingItem.length) {
+                          currentIndex--;
+                        }
+                        _controller.nextPage(
+                          duration: Duration(milliseconds: 300),
+                          curve: Curves.easeIn,
+                        );
+                      },
                       text: 'Next',
                       color: AppColors.primary,
                     ),

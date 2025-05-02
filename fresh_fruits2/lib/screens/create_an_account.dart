@@ -41,10 +41,15 @@ class CreateAnAccount extends StatelessWidget {
                   Positioned(
                     top: 52,
                     left: 36,
-                    child: Icon(
-                      Icons.arrow_back,
-                      size: 30,
-                      color: Colors.white,
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(
+                        Icons.arrow_back,
+                        size: 30,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   Positioned(
